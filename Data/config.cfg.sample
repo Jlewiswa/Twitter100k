@@ -1,0 +1,18 @@
+[Twitter]
+consumer_key =
+consumer_secret =
+access_key =
+access_secret =
+list_slug = team
+list_owner = twitter
+tweets_per_user = 100
+include_rts = True
+
+[SQL]
+host =
+user =
+passwd =
+dbname =
+
+[Klout]
+key =
