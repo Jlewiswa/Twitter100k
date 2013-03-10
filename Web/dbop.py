@@ -1,6 +1,7 @@
 import MySQLdb
 import ConfigParser
 
+# Grab data from the config file
 config = ConfigParser.ConfigParser()
 config.read('config.cfg')
 
@@ -31,6 +32,6 @@ def getTopKloutScores():
     cursor.execute("SELECT users.screen_name,users.klout_score FROM users ORDER BY users.klout_score DESC LIMIT 10")
     return cursor.fetchall()
 
-# Close the db when we're done.
+# Close the db when we're done. Probably won't get called, but it should.
 def close():
     db.close()

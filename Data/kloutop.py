@@ -5,7 +5,7 @@ from klout import *
 # Set the Klout auth key
 api = Klout(keys.getKey('Klout', 'key'),secure=True)
 
-# Grab scores for each klout user currently in the sql db. Sets -1 for
+# Grab scores for each klout user currently in sql. Sets -1 for
 # scores that are unavailable
 def updateScores():
     users = dbop.getUsersForKloutUpdate()

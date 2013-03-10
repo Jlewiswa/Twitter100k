@@ -8,9 +8,9 @@ and the third shows the top 10 users by klout score.
 
 External Dependencies
 =====================
-python-mysqldb
-pygooglechart
-bottlepy
+- python-mysqldb
+- pygooglechart
+- bottlepy
 
 Open Issues
 ===========
@@ -18,5 +18,3 @@ Open Issues
 - nodata.png isn't being displayed correctly, need to configure static files
 - Garbled text on top 10 retweets graph. Those twitter IDs are really long.
     Use a horizontal graph?
-- Graph y_range min/max values aren't always producing great visual results.
-    Need to find a better way to calculate.

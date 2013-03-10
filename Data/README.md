@@ -1,15 +1,15 @@
-AddvocateProject
+Twitter100k - data
 ================
 
-Collect tweets from twitter list members, and the member's klout score, where
+Collect tweets from twitter list members, and each member's klout score, where
 available. Originally designed to pull 100,000 tweets from users of the twitter
 team list.
 
 External Dependencies
 =====================
-python-mysqldb
-tweepy
-PyKlout
+- python-mysqldb
+- tweepy
+- PyKlout
 
 Open Issues
 ===========

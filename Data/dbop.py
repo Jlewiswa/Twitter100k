@@ -25,15 +25,14 @@ def getUsersForKloutUpdate():
     cursor.execute("SELECT id,screen_name FROM users WHERE klout_score = -1")
     return cursor.fetchall()
 
-# Add tweet content to the db. Since tweepy gives us back the creator's info, we
-# can add the user.id to this table without requiring a user object. Also included are
-# Tweet id, tweet text, and retweet_count from the tweepy object.
+# Add tweet content to sql. Includes user id, tweet id, tweet text, retweet_count
+# and retweeted bool from the tweepy object. Retweeted bool is currently broken,
+# only returns false
 def addTweet(content):
     sql = "INSERT IGNORE INTO tweets (id,user_id,text,retweets,retweeted) VALUES (%s,%s,%s,%s,%s)"
     cursor.execute(sql,(content.id,content.user.id,content.text.encode('ascii', 'ignore'),content.retweet_count,int(content.retweeted)))
 
-# Update the sql db with current klout score. The users are pulled from the db originally,
-# so we shouldn't have to check if they exist.
+# Update sql with current klout score.
 def updateKloutScore(userid,score):
     sql = "UPDATE users SET klout_score = %s WHERE id = %s"
     cursor.execute(sql,(score,userid))

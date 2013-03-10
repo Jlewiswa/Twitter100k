@@ -2,6 +2,8 @@ import dbop
 import graphop
 from bottle import route, run
 
+# On requests to /, collect data from sql and apply it to the html template
+# then return it for the user to see
 @route('/')
 def index():
     dbTopUsers = dbop.getTopUsers()
@@ -27,4 +29,5 @@ def index():
     scoresPage = file.format(top_users=topUsers,top_tweets=topTweets,top_klout=topKlout)
     return scoresPage
 
+# start up the server on load
 run(host='localhost', port=8081)

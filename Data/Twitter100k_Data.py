@@ -2,8 +2,7 @@ import dbop
 import twitterop
 import kloutop
 
-#Get twitter users from hardcoded list and gather 80 tweets for each
-#TODO: allow config values for list and how many tweets per user
+#Get twitter users from configured list and gather tweets for each
 twitterop.getTweets()
 
 #query sql db for users and update all user objects with klout score
