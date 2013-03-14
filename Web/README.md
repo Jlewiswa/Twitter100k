@@ -12,6 +12,13 @@ External Dependencies
 - pygooglechart
 - bottlepy
 
+New
+===
+- Old charts removed, replaced with new 'Tweets and Retweets by hour" chart that
+    shows when users are most active, and when they are more likely to post original
+    contentversus retweeting content they've seen.
+
+
 Open Issues
 ===========
 - Server loses connection to db after a bit. Should put some error handling in

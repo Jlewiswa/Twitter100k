@@ -29,8 +29,13 @@ def getUsersForKloutUpdate():
 # and retweeted bool from the tweepy object. Retweeted bool is currently broken,
 # only returns false
 def addTweet(content):
-    sql = "INSERT IGNORE INTO tweets (id,user_id,text,retweets,retweeted) VALUES (%s,%s,%s,%s,%s)"
-    cursor.execute(sql,(content.id,content.user.id,content.text.encode('ascii', 'ignore'),content.retweet_count,int(content.retweeted)))
+    sql = "INSERT IGNORE INTO tweets (id,user_id,text,retweets,retweeted,created) VALUES (%s,%s,%s,%s,%s,%s)"
+    cursor.execute(sql,(content.id,content.user.id,content.text.encode('ascii', 'ignore'),content.retweet_count,int(content.retweeted),content.created_at.isoformat()))
+
+# Set retweeted flag
+def setRetweetedFlags():
+    sql = "UPDATE tweets SET retweeted = 1 WHERE text LIKE 'RT%'"
+    cursor.execute(sql)
 
 # Update sql with current klout score.
 def updateKloutScore(userid,score):
@@ -57,5 +62,6 @@ cursor.execute("""CREATE TABLE IF NOT EXISTS tweets (
                         user_id BIGINT NOT NULL,
                         text VARCHAR(255),
                         retweets INT,
-                        retweeted TINYINT(1))""")
+                        retweeted TINYINT(1),
+                        created DATETIME)""")
 commit()

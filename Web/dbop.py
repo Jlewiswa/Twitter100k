@@ -16,20 +16,14 @@ dbname = config.get('SQL','dbname')
 db = MySQLdb.connect(host=host,user=user,passwd=passwd,db=dbname)
 cursor = db.cursor()
 
-def getTopUsers():
-    cursor.execute("""SELECT users.screen_name,SUM(tweets.retweets) AS rt_sum
-                    FROM users JOIN tweets ON users.id = tweets.user_id
-                    WHERE tweets.retweeted = 0
-                    GROUP BY users.screen_name
-                    ORDER BY rt_sum DESC LIMIT 10""")
-    return cursor.fetchall()
-
-def getTopTweets():
-    cursor.execute("SELECT tweets.id,tweets.retweets FROM tweets ORDER BY tweets.retweets DESC LIMIT 10")
-    return cursor.fetchall()
-
-def getTopKloutScores():
-    cursor.execute("SELECT users.screen_name,users.klout_score FROM users ORDER BY users.klout_score DESC LIMIT 10")
+# Query sql for tweets, retweets, and hours. Then group by hour and show a
+# total count for tweets and retweets for each hour available. Set to PST,
+# exclude datetimes that haven't been set.
+def getTweetsByHour():
+    cursor.execute("""SELECT COUNT(*), SUM(retweeted = 1),
+                    HOUR( CONVERT_TZ( created, '+00:00', '-08:00' ) ) AS crt
+                    FROM tweets WHERE created > 0
+                    GROUP BY crt ORDER BY crt""")
     return cursor.fetchall()
 
 # Close the db when we're done. Probably won't get called, but it should.

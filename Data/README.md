@@ -11,12 +11,15 @@ External Dependencies
 - tweepy
 - PyKlout
 
+New
+=======
+- Now collects 'created' datetime stamp
+- Retweeted flag can now be set (mostly) accurately by running dbop.setRetweetedFlags()
+
 Open Issues
 ===========
-- 'Retweeted' bool from tweepy api always returns false; a bug in tweepy
-    and/or possibly twitter. The top lists will be skewed. It may be useful to parse
-    the first few characters of each tweet and look for "RT" instead
-- mysql transactions are pretty slow, and seem to be holding up the tweet gathering
+
+- mysql transactions are pretty slow, and seem to be holding up the tweet gathering,
     see about running them on their own thread or something
 - Klout error handling could be improved, it currently registers all exceptions
     as the user having 'opted out' of klout, but other conditions such as service
